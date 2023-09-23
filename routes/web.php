@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\BusinessController;
+use App\Http\Controllers\EmployeeController;
 use App\Models\Listing;
 use Illuminate\Http\Request;
 use PhpParser\Node\Expr\FuncCall;
@@ -24,6 +26,12 @@ use App\Http\Controllers\ListingController;
 Route::prefix('admin')->middleware(['auth', 'role'])->group(function() {
     Route::get('/', [AdminController::class, 'index'])->middleware('auth');
 });
+
+// Employee Section
+Route::get('/employee', [EmployeeController::class, 'index'])->middleware('auth');
+
+// Business Owner Section
+Route::get('/business', [BusinessController::class, 'index'])->middleware('auth');
 
 // All Listing
 

@@ -15,18 +15,26 @@
                 </p>
                 @auth
                     <div>
-                        <a
-                            href="/listings/create"
-                            class="inline-block border-2 border-white text-white py-2 px-4 rounded-xl uppercase mt-2 hover:text-black hover:border-black"
-                        >Post a Job Now</a
-                        >
+                        @if(auth()->user()->role == '0')
+                            <a
+                                href="/listings/create"
+                                class="inline-block border-2 border-white text-white py-2 px-4 rounded-xl uppercase mt-2 hover:text-black hover:border-black"
+                            >Post a Job Now</a
+                            >
+                        @else
+                            <a
+                                href="/listings/create"
+                                class="inline-block border-2 border-white text-white py-2 px-4 rounded-xl uppercase mt-2 hover:text-black hover:border-black"
+                            >Find a Job Now</a
+                            >
+                        @endif
                     </div>
                 @else
                     <div>
                         <a
                             href="/register"
                             class="inline-block border-2 border-white text-white py-2 px-4 rounded-xl uppercase mt-2 hover:text-black hover:border-black"
-                        >Sign Up to Post a Job</a
+                        >Sign Up to Post or Find a Job</a
                         >
                     </div>
                 @endauth
