@@ -32,7 +32,7 @@ class UserController extends Controller
         auth()->login($user);
 
         return redirect('/')->with('message', 'User created and logged in');
-        
+
     }
 
     // Logout User
@@ -61,10 +61,14 @@ class UserController extends Controller
         if(auth()->attempt($formFields)) {
             $request->session()->regenerate();
 
-            return redirect('/')->with('message', 'You are now logged in');
+            if (auth()->user()->role == '2') {
+                return redirect('/admin')->with('message', 'You are now logged in');
+            }else {
+                return redirect('/')->with('message', 'You are now logged in');
+            }
         }
 
-        return back()->withErrors(['email' => 'Invalid 
+        return back()->withErrors(['email' => 'Invalid
         Credentials'])->onlyInput('email');
     }
 }

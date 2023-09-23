@@ -13,12 +13,22 @@
                 <p class="text-2xl text-gray-200 font-bold my-4">
                     Find Your Dream Job
                 </p>
-                <div>
-                    <a
-                        href="/register"
-                        class="inline-block border-2 border-white text-white py-2 px-4 rounded-xl uppercase mt-2 hover:text-black hover:border-black"
+                @auth
+                    <div>
+                        <a
+                            href="/listings/create"
+                            class="inline-block border-2 border-white text-white py-2 px-4 rounded-xl uppercase mt-2 hover:text-black hover:border-black"
+                        >Post a Job Now</a
+                        >
+                    </div>
+                @else
+                    <div>
+                        <a
+                            href="/register"
+                            class="inline-block border-2 border-white text-white py-2 px-4 rounded-xl uppercase mt-2 hover:text-black hover:border-black"
                         >Sign Up to Post a Job</a
-                    >
-                </div>
+                        >
+                    </div>
+                @endauth
             </div>
         </section>
