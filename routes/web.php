@@ -22,16 +22,15 @@ use App\Http\Controllers\ListingController;
 */
 
 //Admin Section
-
 Route::prefix('admin')->middleware(['auth', 'role'])->group(function() {
-    Route::get('/', [AdminController::class, 'index'])->middleware('auth');
+    Route::get('/', [AdminController::class, 'index']);
 });
 
 // Employee Section
-Route::get('/employee', [EmployeeController::class, 'index'])->middleware('auth');
+Route::get('/employee', [EmployeeController::class, 'index'])->middleware('employer');
 
 // Business Owner Section
-Route::get('/business', [BusinessController::class, 'index'])->middleware('auth');
+Route::get('/business', [BusinessController::class, 'index'])->middleware('business');
 
 // All Listing
 

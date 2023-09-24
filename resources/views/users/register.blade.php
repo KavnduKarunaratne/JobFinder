@@ -9,7 +9,7 @@
                         <p class="mb-4">Create an account to get started</p>
                     </header>
 
-                    <form method="POST" action="/users">
+                    <form x-data="{ showCV: false }" method="POST" action="/users" enctype="multipart/form-data">
                         @csrf
                         <div class="mb-6">
                             <label class="inline-block text-lg mb-2">Choose Role:</label>
@@ -20,6 +20,8 @@
                                     name="role"
                                     value="0"
                                     class="mr-2"
+                                    checked
+                                    x-on:click="showCV = false"
                                 />
                                 <label for="business_role">Business</label>
 
@@ -29,42 +31,11 @@
                                     name="role"
                                     value="1"
                                     class="ml-4 mr-2"
+                                    x-on:click="showCV = true"
                                 />
                                 <label for="employer_role">Employer</label>
                             </div>
                         </div>
-
-{{--                        <div class="w-full">--}}
-{{--                            <div class="md:grid grid-cols-12 gap-3 pb-4 w-full">--}}
-{{--                                <div class="col-span-6">--}}
-{{--                                    <div class="w-full">--}}
-{{--                                        <input id="business_role"--}}
-{{--                                               type="radio"--}}
-{{--                                               name="role"--}}
-{{--                                               value="0"--}}
-{{--                                               checked--}}
-{{--                                               class="peer opacity-0 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500--}}
-{{--                                               dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">--}}
-{{--                                        <label for="business_role" class="flex cursor-pointer  bg-gray-200 justify-center items-center h-10 w-full--}}
-{{--                                        peer-checked:bg-rose-500 peer-checked:text-white text-[17px] text-sm font-medium text-gray-900--}}
-{{--                                        dark:text-gray-300">Business</label>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                            <div class="col-span-6">--}}
-{{--                                <div class="w-full">--}}
-{{--                                    <input id="employee_role"--}}
-{{--                                           type="radio"--}}
-{{--                                           name="role"--}}
-{{--                                           value="1"--}}
-{{--                                           class="peer opacity-0 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500--}}
-{{--                                               dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">--}}
-{{--                                    <label for="employee_role" class="flex cursor-pointer  bg-gray-200 justify-center items-center h-10 w-full--}}
-{{--                                    peer-checked:bg-rose-500 peer-checked:text-white text-[17px] text-sm font-medium text-gray-900--}}
-{{--                                    dark:text-gray-300">Employee</label>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
 
                         <div class="mb-6">
                             <label for="name" class="inline-block text-lg mb-2">
@@ -93,6 +64,20 @@
                             />
                             @error('email')
                                 <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                            @enderror
+                        </div>
+
+                        <div class="mb-6" x-show="showCV">
+                            <label for="cv" class="inline-block text-lg mb-2">
+                                CV
+                            </label>
+                            <input
+                                type="file"
+                                class="border border-gray-200 rounded p-2 w-full"
+                                name="cv"
+                            />
+                            @error('cv')
+                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                             @enderror
                         </div>
 

@@ -26,6 +26,11 @@ class UserController extends Controller
         // Hash Password
         $formFields['password'] = bcrypt($formFields['password']);
 
+        if($request->hasFile('cv')) {
+            $formFields['cv'] = $request->file('cv')->store('cvs', 'public');
+        }
+
+
         // Create User
         $user = User::create($formFields);
 
