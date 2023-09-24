@@ -26,11 +26,15 @@ Route::prefix('admin')->middleware(['auth', 'role'])->group(function() {
     Route::get('/', [AdminController::class, 'index']);
 });
 
-// Employee Section
-Route::get('/employee', [EmployeeController::class, 'index'])->middleware('employer');
+//Employer Section
+Route::prefix('employer')->middleware(['auth', 'employer'])->group(function() {
+    Route::get('/', [EmployeeController::class, 'index']);
+});
 
 // Business Owner Section
-Route::get('/business', [BusinessController::class, 'index'])->middleware('business');
+Route::prefix('business')->middleware(['auth', 'business'])->group(function() {
+    Route::get('/', [BusinessController::class, 'index']);
+});
 
 // All Listing
 

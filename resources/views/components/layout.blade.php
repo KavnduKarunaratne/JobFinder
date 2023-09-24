@@ -54,7 +54,7 @@
             @endif
             @if(auth()->user()->role == 1)
                     <li>
-                        <a href="/employee" class="hover:text-laravel">
+                        <a href="/employer" class="hover:text-laravel">
                             <i class="fa-solid fa-user"></i>
                             Profile</a>
                     </li>
