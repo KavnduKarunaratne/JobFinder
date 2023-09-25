@@ -31,7 +31,7 @@
 <body class="mb-48">
     <nav class="flex justify-between items-center mb-4">
         <a href="/"
-            ><img class="w-24" src="{{asset('images/logo.jpg')}}" alt="" class="logo"/>
+            ><img class="w-24 logo" src="{{asset('images/logo.jpg')}}" alt=""/>
         </a>
         <ul class="flex space-x-6 mr-6 text-lg">
             @auth
