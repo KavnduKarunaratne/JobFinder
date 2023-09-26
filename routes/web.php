@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BusinessController;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\MailController;
 use App\Models\Listing;
 use Illuminate\Http\Request;
 use PhpParser\Node\Expr\FuncCall;
@@ -80,6 +81,9 @@ Route::post('/logout', [UserController::class,
 // Show Login Form
 Route::get('/login', [UserController::class,
 'login'])->name('login')->middleware('guest');
+
+// Mail Company
+Route::get('/{email}', [MailController::class, 'mail']);
 
 //Login User
 Route::post('/users/authenticate', [UserController::class, 'authenticate']);
