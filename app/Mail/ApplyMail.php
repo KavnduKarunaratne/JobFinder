@@ -11,7 +11,6 @@ class ApplyMail extends Mailable
     use Queueable, SerializesModels;
 
     public $nameUser;
-    public $emailUser;
 
     public function __construct($nameUser, $emailUser)
     {
