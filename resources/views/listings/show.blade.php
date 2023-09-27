@@ -48,6 +48,21 @@
                                     ><i class="fa-solid fa-globe"></i> Visit
                                     Website</a
                                 >
+{{--                                    @foreach($bookmarks as $bookmark)--}}
+{{--                                    @if(auth()->user()->id == $bookmark->user_id && $bookmark->listing_id == $listing->id)--}}
+{{--<a--}}
+{{--                                        href="/{{$listing->id}}/bookmark"--}}
+{{--                                        class="block bg-laravel text-white mt-6 py-2 rounded-xl hover:opacity-80"--}}
+{{--                                        ><i class="fa-solid fa-bookmark"></i>--}}
+{{--                                        Remove from bookmarks</a--}}
+{{--                                    @else--}}
+                                                <form action="/bookmark" method="POST">
+                                                    @csrf
+                                                    <input type="hidden" name="listing_id" value="{{$listing->id}}">
+                                                    <button type="submit" class="block bg-laravel text-white mt-6 py-2 rounded-xl hover:opacity-80"><i class="fa-solid fa-bookmark"></i> Bookmark</button>
+                                                </form>
+{{--                                    @endif--}}
+{{--                                        @endforeach--}}
                                     @else
                                         <a
                                             href="{{$listing->webiste}}"

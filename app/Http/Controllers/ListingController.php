@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Listing;
+use App\Models\Bookmark;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
@@ -20,7 +21,7 @@ class ListingController extends Controller
     //Show single listing
     public function show(Listing $listing) {
         return view('listings.show', [
-            'listing' => $listing
+            'listing' => $listing,
         ]);
     }
 
@@ -50,7 +51,7 @@ class ListingController extends Controller
 
         Listing::create($formFields);
 
-        return redirect('/')->with('message', 
+        return redirect('/')->with('message',
         'Job created successfully!');
     }
 
@@ -88,13 +89,13 @@ class ListingController extends Controller
         // One way to show flash card messages
         // Session::flash('message', 'Listing Created');
 
-        return back()->with('message', 
+        return back()->with('message',
         'Job updated successfully!');
     }
 
     //Delete listing
     public function destroy(Listing $listing) {
-        
+
         // Make sure the the logged in user is owner
         if($listing->user_id != auth()->id()) {
             abort(403, 'Unauthorized action.');
@@ -108,4 +109,14 @@ class ListingController extends Controller
     public function manage() {
         return view('listings.manage', ['listings' => auth()->user()->listings()->get()]);
     }
+
+    public function bookmark(Request $request) {
+//        dd($request->listing_id);
+        $bookmark = new Bookmark();
+        $bookmark->user_id = auth()->id();
+        $bookmark->listing_id = $request->listing_id;
+        $bookmark->save();
+        return redirect('/')->with('message', 'Job bookmarked successfully!');
+    }
+
 }

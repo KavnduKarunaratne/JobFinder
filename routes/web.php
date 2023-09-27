@@ -72,6 +72,8 @@ Route::get('/listings/manage', [ListingController::class,
 
 Route::get('/listings/{listing}', [ListingController::class, 'show']);
 
+Route::post('/bookmark', [ListingController::class, 'bookmark'])->middleware('auth');
+
 // Show Register/Create Form
 Route::get('/register', [UserController::class,
 'create'])->middleware('guest');
