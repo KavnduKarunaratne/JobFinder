@@ -11,7 +11,9 @@ class AdminController extends Controller
     public function index()
     {
 //        dd(User::all());
-        return view('admin.dashboard');
+        return view('admin.dashboard', [
+            'users' => User::all()
+        ]);
 
     }
 
@@ -39,5 +41,33 @@ class AdminController extends Controller
 
         return redirect('/admin')->with('message', 'User created and logged in');
 
+    }
+
+    //Show Edit form
+    public function edit(User $user) {
+//        dd($user);
+        return view('admin.edit', [
+            'user' => $user
+        ]);
+    }
+
+    public function update(Request $request, $user) {
+        $formFields = $request->validate([
+            'name' => ['required', 'min:3'],
+        ]);
+
+        $edit = User::find($user);
+        $edit->name = $formFields['name'];
+        $edit->save();
+
+        return redirect('/admin')->with('message', 'User updated');
+
+    }
+
+    public function destroy($user) {
+        $delete = User::find($user);
+
+        $delete->delete();
+        return redirect('/admin')->with('message', 'User deleted');
     }
 }

@@ -27,6 +27,9 @@ Route::prefix('admin')->middleware(['auth', 'role'])->group(function() {
     Route::get('/', [AdminController::class, 'index']);
     Route::get('/register', [AdminController::class, 'create']);
     Route::post('/users', [AdminController::class, 'store']);
+    Route::get('/users/{user}/edit', [AdminController::class, 'edit']);
+    Route::put('/users/{user}', [AdminController::class, 'update']);
+    Route::delete('/delete/{user}', [AdminController::class, 'destroy']);
 });
 
 //Employer Section
