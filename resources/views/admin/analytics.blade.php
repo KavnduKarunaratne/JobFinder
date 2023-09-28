@@ -21,6 +21,8 @@
                     colors: {
                         laravel: "#008082",
                         hover: "#004d4f",
+                        l_one: "#55b7b9",
+                        l_two: "#91f1f3",
                     },
                 },
             },
@@ -105,52 +107,161 @@
         </div>
     </div>
 
-    <main class="ml-64 p-8">
-        <div>
-            <div class="h-40 rounded-xl shadow-md p-6 mt-4 bg-white">
+    <main class="w-full ml-64 p-8">
+        <div class="flex flex-wrap space-x-4">
+            <div class="w-80 h-40 rounded-xl shadow-md p-6 mt-4 ml-4 bg-laravel">
                 <div class="font-semibold mb-1 text-lg" style="color: rgb(0, 56, 55);">Total Users</div>
                 <div class="font-semibold text-5xl tracking-tight" style="color: rgb(0, 56, 55);">{{$totalUsers}}</div>
             </div>
-            <div class="h-40 rounded-xl shadow-md p-6 mt-4 bg-white">
+            <div class="w-80 h-40 rounded-xl shadow-md p-6 mt-4 bg-laravel">
                 <div class="font-semibold mb-1 text-lg" style="color: rgb(0, 56, 55);">Total Admin Accounts</div>
                 <div class="font-semibold text-5xl tracking-tight" style="color: rgb(0, 56, 55);">{{$totalAdmin}}</div>
             </div>
-            <div class="h-40 rounded-xl shadow-md p-6 mt-4 bg-white">
+            <div class="w-80 h-40 rounded-xl shadow-md p-6 mt-4 bg-laravel">
                 <div class="font-semibold mb-1 text-lg" style="color: rgb(0, 56, 55);">Total Business Accounts</div>
                 <div class="font-semibold text-5xl tracking-tight" style="color: rgb(0, 56, 55);">{{$totalBusiness}}</div>
             </div>
-            <div class="h-40 rounded-xl shadow-md p-6 mt-4 bg-white">
+            <div class="w-80 h-40 rounded-xl shadow-md p-6 mt-4 bg-l_one">
                 <div class="font-semibold mb-1 text-lg" style="color: rgb(0, 56, 55);">Total Employer Accounts</div>
                 <div class="font-semibold text-5xl tracking-tight" style="color: rgb(0, 56, 55);">{{$totalEmployer}}</div>
             </div>
-            <div class="h-40 rounded-xl shadow-md p-6 mt-4 bg-white">
+            <div class="w-80 h-40 rounded-xl shadow-md p-6 mt-4 bg-l_one">
                 <div class="font-semibold mb-1 text-lg" style="color: rgb(0, 56, 55);">Total Jobs</div>
                 <div class="font-semibold text-5xl tracking-tight" style="color: rgb(0, 56, 55);">{{$totalJobs}}</div>
             </div>
-            <div class="h-40 rounded-xl shadow-md p-6 mt-4 bg-white">
-                <div class="font-semibold mb-1 text-lg" style="color: rgb(0, 56, 55);">Total Jobs Created This Month</div>
+            <div class="w-80 h-40 rounded-xl shadow-md p-6 mt-4 bg-l_one">
+                <div class="font-semibold mb-1 text-lg" style="color: rgb(0, 56, 55);">Total Jobs Posted Today</div>
+                <div class="font-semibold text-5xl tracking-tight" style="color: rgb(0, 56, 55);">{{$totalJobsToday}}</div>
+            </div>
+            <div class="w-80 h-40 rounded-xl shadow-md p-6 mt-4 bg-l_two">
+                <div class="font-semibold mb-1 text-lg" style="color: rgb(0, 56, 55);">Total Jobs Posted This Month</div>
                 <div class="font-semibold text-5xl tracking-tight" style="color: rgb(0, 56, 55);">{{$totalJobsThisMonth}}</div>
             </div>
-            <div class="h-40 rounded-xl shadow-md p-6 mt-4 bg-white">
-                <div class="font-semibold mb-1 text-lg" style="color: rgb(0, 56, 55);">Total Jobs Created This Year</div>
+            <div class="w-80 h-40 rounded-xl shadow-md p-6 mt-4 bg-l_two">
+                <div class="font-semibold mb-1 text-lg" style="color: rgb(0, 56, 55);">Total Jobs Posted This Year</div>
                 <div class="font-semibold text-5xl tracking-tight" style="color: rgb(0, 56, 55);">{{$totalJobsThisYear}}</div>
             </div>
-            <div class="h-40 rounded-xl shadow-md p-6 mt-4 bg-white">
+            <div class="w-80 h-40 rounded-xl shadow-md p-6 mt-4 bg-l_two">
                 <div class="font-semibold mb-1 text-lg" style="color: rgb(0, 56, 55);">Total Bookmarks</div>
                 <div class="font-semibold text-5xl tracking-tight" style="color: rgb(0, 56, 55);">{{$totalBookmarks}}</div>
             </div>
-            <div class="h-40 rounded-xl shadow-md p-6 mt-4 bg-white">
+            <div class="w-80 h-fit rounded-xl shadow-md p-6 mt-4 bg-l_two">
                 <div class="font-semibold mb-1 text-lg" style="color: rgb(0, 56, 55);">Most Bookmarked Job</div>
-                <div class="font-semibold text-5xl tracking-tight" style="color: rgb(0, 56, 55);">{{$mostBookmarkedJob->company}}</div>
-                <div class="font-normal" style="color: rgb(0, 119, 117);">{{$mostBookmarkedJob->title}}</div>
+                <div class="font-semibold text-5xl tracking-tight" style="color: rgb(0, 56, 55);">{{$oneBookmarkedJob->company}}</div>
+                <div class="font-normal" style="color: rgb(0, 119, 117);">{{$oneBookmarkedJob->title}}</div>
 
             </div>
+            <div class="w-80 h-fit rounded-xl shadow-md p-6 mt-4 bg-l_two">
+                <div class="font-semibold mb-1 text-lg" style="color: rgb(0, 56, 55);">Most Bookmarked Job</div>
+                <div class="font-semibold text-5xl tracking-tight" style="color: rgb(0, 56, 55);">{{$twoBookmarkedJob->company}}</div>
+                <div class="font-normal" style="color: rgb(0, 119, 117);">{{$twoBookmarkedJob->title}}</div>
+            </div>
+            <div class="w-80 h-fit rounded-xl shadow-md p-6 mt-4 bg-l_two">
+                <div class="font-semibold mb-1 text-lg" style="color: rgb(0, 56, 55);">Most Bookmarked Job</div>
+                <div class="font-semibold text-5xl tracking-tight" style="color: rgb(0, 56, 55);">{{$threeBookmarkedJob->company}}</div>
+                <div class="font-normal" style="color: rgb(0, 119, 117);">{{$threeBookmarkedJob->title}}</div>
+            </div>
+        </div>
+
+        <div class="w-3/4 mt-4">
+            <canvas id="oneChart"></canvas>
+        </div>
+
+        <div class="w-3/4 mt-4">
+            <canvas id="twoChart"></canvas>
         </div>
 
     </main>
 </div>
+
+
+
 <x-flash-message />
 
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+    const ctx1 = document.getElementById('oneChart');
+    const ctx2 = document.getElementById('twoChart');
+
+    const totalAdminData = @json($totalAdmin);
+    const totalEmployerData = @json($totalEmployer);
+    const totalBusinessData = @json($totalBusiness);
+
+    const totalJobsThisMonthData = @json($totalJobsThisMonth);
+
+    const totalJobsThisJan = @json($totalJobJan);
+    const totalJobsThisFeb = @json($totalJobFeb);
+    const totalJobsThisMar = @json($totalJobMar);
+    const totalJobsThisApr = @json($totalJobApr);
+    const totalJobsThisMay = @json($totalJobMay);
+    const totalJobsThisJune = @json($totalJobJun);
+    const totalJobsThisJuly = @json($totalJobJul);
+    const totalJobsThisAug = @json($totalJobAug);
+    const totalJobsThisSep = @json($totalJobSep);
+    const totalJobsThisOct = @json($totalJobOct);
+    const totalJobsThisNov = @json($totalJobNov);
+    const totalJobsThisDec = @json($totalJobDec);
+
+    new Chart(ctx1, {
+        type: 'bar',
+        data: {
+            labels: ['Administrators', 'Business', 'Employer'],
+            datasets: [{
+                label: 'Number of Users per Role',
+                data: [totalAdminData, totalBusinessData, totalEmployerData],
+                backgroundColor: [
+                    'rgba(0, 128, 128, 0.2)',
+                    'rgba(0, 128, 128, 0.2)',
+                    'rgba(0, 128, 128, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(0, 128, 128, 1)',
+                    'rgba(0, 128, 128, 1)',
+                    'rgba(0, 128, 128, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+    new Chart(ctx2, {
+        type: 'line',
+        data: {
+            labels: ['Jan', 'Feb', 'March', 'April', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'],
+            datasets: [{
+                label: 'Number of jobs posted per Month',
+                data: [totalJobsThisJan, totalJobsThisFeb, totalJobsThisMar, totalJobsThisApr, totalJobsThisMay, totalJobsThisJune,
+                    totalJobsThisJuly, totalJobsThisAug, totalJobsThisSep, totalJobsThisOct, totalJobsThisNov, totalJobsThisDec],
+                backgroundColor: [
+                    'rgba(0, 128, 128, 0.2)',
+                    'rgba(0, 128, 128, 0.2)',
+                    'rgba(0, 128, 128, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(0, 128, 128, 1)',
+                    'rgba(0, 128, 128, 1)',
+                    'rgba(0, 128, 128, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>
 </body>
 </html>
 

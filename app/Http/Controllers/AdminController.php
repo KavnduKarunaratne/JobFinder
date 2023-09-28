@@ -13,36 +13,9 @@ class AdminController extends Controller
 {
     public function index()
     {
-
-        $totalUsers = User::count();
-        $totalJobs = Listing::count();
-        $totalBookmarks = Bookmark::count();
-
-        $totalBusiness = User::where('role', '0')->count();
-        $totalEmployer = User::where('role', '1')->count();
-        $totalAdmin = User::where('role', '2')->count();
-
-        $todayDate = Carbon::now()->format('d-m-Y');
-        $thisMonth = Carbon::now()->format('m');
-        $thisYear = Carbon::now()->format('Y');
-
-        $totalJobsToday = Listing::whereDate('created_at', $todayDate)->count();
-        $totalJobsThisMonth = Listing::whereMonth('created_at', $thisMonth)->count();
-        $totalJobsThisYear = Listing::whereYear('created_at', $thisYear)->count();
-
-
-        $mostBookmarked = Bookmark::select('listing_id')
-            ->groupBy('listing_id')
-            ->orderByRaw('COUNT(*) DESC')
-            ->limit(1)
-            ->get();
-        $mostBookmarkedJob = Listing::find($mostBookmarked[0]['listing_id']);
-
         return view('admin.dashboard', [
             'users' => User::all(),
-        ], compact('totalUsers', 'totalJobs', 'totalBookmarks', 'totalBusiness', 'totalEmployer',
-            'totalAdmin', 'totalJobsToday', 'totalJobsThisMonth', 'totalJobsThisYear', 'mostBookmarked', 'mostBookmarkedJob'));
-
+        ]);
     }
 
     public function analytics() {
@@ -54,24 +27,56 @@ class AdminController extends Controller
         $totalEmployer = User::where('role', '1')->count();
         $totalAdmin = User::where('role', '2')->count();
 
-        $todayDate = Carbon::now()->format('d-m-Y');
+        $todayDate = Carbon::now()->format('Y-m-d');
         $thisMonth = Carbon::now()->format('m');
         $thisYear = Carbon::now()->format('Y');
 
+        $thisJan = Carbon::now()->format('01');
+        $thisFeb = Carbon::now()->format('02');
+        $thisMar = Carbon::now()->format('03');
+        $thisApr = Carbon::now()->format('04');
+        $thisMay = Carbon::now()->format('05');
+        $thisJun = Carbon::now()->format('06');
+        $thisJul = Carbon::now()->format('07');
+        $thisAug = Carbon::now()->format('08');
+        $thisSep = Carbon::now()->format('09');
+        $thisOct = Carbon::now()->format('10');
+        $thisNov = Carbon::now()->format('11');
+        $thisDec = Carbon::now()->format('12');
+
         $totalJobsToday = Listing::whereDate('created_at', $todayDate)->count();
         $totalJobsThisMonth = Listing::whereMonth('created_at', $thisMonth)->count();
+
+        $totalJobJan = Listing::whereMonth('created_at', $thisJan)->count();
+        $totalJobFeb = Listing::whereMonth('created_at', $thisFeb)->count();
+        $totalJobMar = Listing::whereMonth('created_at', $thisMar)->count();
+        $totalJobApr = Listing::whereMonth('created_at', $thisApr)->count();
+        $totalJobMay = Listing::whereMonth('created_at', $thisMay)->count();
+        $totalJobJun = Listing::whereMonth('created_at', $thisJun)->count();
+        $totalJobJul = Listing::whereMonth('created_at', $thisJul)->count();
+        $totalJobAug = Listing::whereMonth('created_at', $thisAug)->count();
+        $totalJobSep = Listing::whereMonth('created_at', $thisSep)->count();
+        $totalJobOct = Listing::whereMonth('created_at', $thisOct)->count();
+        $totalJobNov = Listing::whereMonth('created_at', $thisNov)->count();
+        $totalJobDec = Listing::whereMonth('created_at', $thisDec)->count();
+
         $totalJobsThisYear = Listing::whereYear('created_at', $thisYear)->count();
 
         $mostBookmarked = Bookmark::select('listing_id')
             ->groupBy('listing_id')
             ->orderByRaw('COUNT(*) DESC')
-            ->limit(1)
+            ->limit(3)
             ->get();
-        $mostBookmarkedJob = Listing::find($mostBookmarked[0]['listing_id']);
+        $oneBookmarkedJob = Listing::find($mostBookmarked[0]['listing_id']);
+        $twoBookmarkedJob = Listing::find($mostBookmarked[1]['listing_id']);
+        $threeBookmarkedJob = Listing::find($mostBookmarked[2]['listing_id']);
 
 
         return view('admin.analytics', compact('totalUsers', 'totalJobs', 'totalBookmarks', 'totalBusiness', 'totalEmployer',
-            'totalAdmin', 'totalJobsToday', 'totalJobsThisMonth', 'totalJobsThisYear', 'mostBookmarked', 'mostBookmarkedJob'));
+            'totalAdmin', 'totalJobsToday', 'totalJobsThisMonth', 'totalJobsThisYear', 'mostBookmarked',
+            'oneBookmarkedJob', 'twoBookmarkedJob', 'threeBookmarkedJob',
+            'totalJobJan', 'totalJobFeb', 'totalJobMar', 'totalJobApr', 'totalJobMay', 'totalJobJun',
+            'totalJobJul', 'totalJobAug', 'totalJobSep', 'totalJobOct', 'totalJobNov', 'totalJobDec'));
     }
 
     // Show create form
