@@ -45,6 +45,35 @@ class AdminController extends Controller
 
     }
 
+    public function analytics() {
+        $totalUsers = User::count();
+        $totalJobs = Listing::count();
+        $totalBookmarks = Bookmark::count();
+
+        $totalBusiness = User::where('role', '0')->count();
+        $totalEmployer = User::where('role', '1')->count();
+        $totalAdmin = User::where('role', '2')->count();
+
+        $todayDate = Carbon::now()->format('d-m-Y');
+        $thisMonth = Carbon::now()->format('m');
+        $thisYear = Carbon::now()->format('Y');
+
+        $totalJobsToday = Listing::whereDate('created_at', $todayDate)->count();
+        $totalJobsThisMonth = Listing::whereMonth('created_at', $thisMonth)->count();
+        $totalJobsThisYear = Listing::whereYear('created_at', $thisYear)->count();
+
+        $mostBookmarked = Bookmark::select('listing_id')
+            ->groupBy('listing_id')
+            ->orderByRaw('COUNT(*) DESC')
+            ->limit(1)
+            ->get();
+        $mostBookmarkedJob = Listing::find($mostBookmarked[0]['listing_id']);
+
+
+        return view('admin.analytics', compact('totalUsers', 'totalJobs', 'totalBookmarks', 'totalBusiness', 'totalEmployer',
+            'totalAdmin', 'totalJobsToday', 'totalJobsThisMonth', 'totalJobsThisYear', 'mostBookmarked', 'mostBookmarkedJob'));
+    }
+
     // Show create form
     public function create() {
         return view('admin.create');

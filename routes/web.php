@@ -25,6 +25,7 @@ use App\Http\Controllers\ListingController;
 //Admin Section
 Route::prefix('admin')->middleware(['auth', 'role'])->group(function() {
     Route::get('/', [AdminController::class, 'index']);
+    Route::get('/analytics', [AdminController::class, 'analytics']);
     Route::get('/register', [AdminController::class, 'create']);
     Route::post('/users', [AdminController::class, 'store']);
     Route::get('/users/{user}/edit', [AdminController::class, 'edit']);
