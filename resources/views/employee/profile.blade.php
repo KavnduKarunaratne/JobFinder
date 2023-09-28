@@ -7,6 +7,9 @@
             >
                 BookMarked Jobs
             </h1>
+            <a href="/employer/{{ $user }}/edit" class="block bg-laravel text-white mt-6 py-2 px-3 mx-auto rounded-xl hover:opacity-80 mb-4">
+                <i class="fa-solid fa-file"></i>
+                Update CV</a>
         </header>
 
         <table class="w-full table-auto rounded-sm">

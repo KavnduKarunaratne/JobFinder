@@ -35,6 +35,8 @@ Route::prefix('admin')->middleware(['auth', 'role'])->group(function() {
 //Employer Section
 Route::prefix('employer')->middleware(['auth', 'employer'])->group(function() {
     Route::get('/', [EmployeeController::class, 'index']);
+    Route::get('/{user}/edit', [EmployeeController::class, 'edit']);
+    Route::put('/{user}', [EmployeeController::class, 'update']);
 });
 
 // All Listing
@@ -89,7 +91,7 @@ Route::get('/login', [UserController::class,
 'login'])->name('login')->middleware('guest');
 
 // Mail Company
-Route::get('/{email}', [MailController::class, 'mail']);
+Route::get('/{email}', [MailController::class, 'mail'])->middleware('employer');
 
 //Login User
 Route::post('/users/authenticate', [UserController::class, 'authenticate']);
