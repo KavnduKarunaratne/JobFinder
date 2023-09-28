@@ -179,13 +179,20 @@
                                                     Edit
                                                 </a>
                                             </td>
+
                                             <td class="whitespace-nowrap px-6 py-4">
-                                                <form method="POST" action="/admin/delete/{{ $user->id }}">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button class="text-red-500"><i class="fa-solid fa-trash"></i>Delete</button>
-                                                </form>
+                                                @if(auth()->user()->id == $user->id)
+                                                    <p>Logged In</p>
+                                                @else
+                                                    <form method="POST" action="/admin/delete/{{ $user->id }}">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button class="text-red-500"><i class="fa-solid fa-trash"></i>Delete</button>
+                                                    </form>
+                                                @endif
                                             </td>
+
+
                                         </tr>
                                     @endif
                                 @endforeach
