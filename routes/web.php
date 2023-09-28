@@ -72,7 +72,11 @@ Route::get('/listings/manage', [ListingController::class,
 
 Route::get('/listings/{listing}', [ListingController::class, 'show']);
 
+// Bookmark Listing
 Route::post('/bookmark', [ListingController::class, 'bookmark'])->middleware('auth');
+
+// Unbookmark Listing
+Route::delete('/bookmark/{bookmark}', [ListingController::class, 'unbookmark'])->middleware('auth');
 
 // Show Register/Create Form
 Route::get('/register', [UserController::class,

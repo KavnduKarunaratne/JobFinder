@@ -48,21 +48,29 @@
                                     ><i class="fa-solid fa-globe"></i> Visit
                                     Website</a
                                 >
-{{--                                    @foreach($bookmarks as $bookmark)--}}
-{{--                                    @if(auth()->user()->id == $bookmark->user_id && $bookmark->listing_id == $listing->id)--}}
-{{--<a--}}
-{{--                                        href="/{{$listing->id}}/bookmark"--}}
-{{--                                        class="block bg-laravel text-white mt-6 py-2 rounded-xl hover:opacity-80"--}}
-{{--                                        ><i class="fa-solid fa-bookmark"></i>--}}
-{{--                                        Remove from bookmarks</a--}}
-{{--                                    @else--}}
-                                                <form action="/bookmark" method="POST">
-                                                    @csrf
-                                                    <input type="hidden" name="listing_id" value="{{$listing->id}}">
-                                                    <button type="submit" class="block bg-laravel text-white mt-6 py-2 rounded-xl hover:opacity-80"><i class="fa-solid fa-bookmark"></i> Bookmark</button>
-                                                </form>
-{{--                                    @endif--}}
-{{--                                        @endforeach--}}
+                                                @php
+                                                    $hasBookmark = false;
+                                                @endphp
+                                                {{-- Check if the listing has a bookmark for the current user --}}
+                                                @foreach($bookmarks as $bookmark)
+                                                    @if($bookmark->listing_id === $listing->id && $bookmark->user_id === auth()->user()->id)
+                                                        @php
+                                                            $hasBookmark = true;
+                                                        @endphp
+                                                        {{-- If a bookmark exists, break the loop --}}
+                                                        @break
+                                                    @endif
+                                                @endforeach
+
+                                                {{-- Display the form to create a bookmark if no bookmark exists --}}
+                                                @if(!$hasBookmark)
+                                                            <form action="/bookmark" method="POST">
+                                                                @csrf
+                                                                <input type="hidden" name="listing_id" value="{{$listing->id}}">
+                                                                <button type="submit" class="block bg-laravel text-white mt-6 py-2 px-3 mx-auto rounded-xl hover:opacity-80"><i class="fa-solid fa-bookmark"></i> Bookmark</button>
+                                                            </form>
+                                                @endif
+
                                     @else
                                         <a
                                             href="{{$listing->webiste}}"

@@ -22,6 +22,7 @@ class ListingController extends Controller
     public function show(Listing $listing) {
         return view('listings.show', [
             'listing' => $listing,
+            'bookmarks' => Bookmark::get()
         ]);
     }
 
@@ -117,6 +118,20 @@ class ListingController extends Controller
         $bookmark->listing_id = $request->listing_id;
         $bookmark->save();
         return redirect('/')->with('message', 'Job bookmarked successfully!');
+    }
+
+    public function unbookmark( Request $request, $bookmark) {
+//        dd($request);
+//        dd($bookmark);
+//        if($bookmark->user_id != auth()->id()) {
+//            abort(403, 'Unauthorized action.');
+//        }
+
+        $bookmark = Bookmark::find($bookmark);
+//        dd($bookmark);
+        $bookmark->delete();
+        return redirect('/')->with('message', 'Job removed from bookmarks successfully!');
+
     }
 
 }
