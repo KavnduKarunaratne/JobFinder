@@ -155,6 +155,7 @@
             <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
                 <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
                     <div class="overflow-hidden">
+                        <h1 class="ml-2 text-xl font-bold text-laravel mb-4">Admin Accounts</h1>
                         <table class="min-w-full text-left text-sm font-light">
                             <thead class="border-b font-medium dark:border-neutral-500">
                             <tr>
@@ -199,8 +200,143 @@
 
                             </tbody>
                         </table>
+
+                        <h1 class="ml-2 text-xl font-bold text-laravel my-4">Business Accounts</h1>
+
+                        <table class="min-w-full text-left text-sm font-light">
+                            <thead class="border-b font-medium dark:border-neutral-500">
+                            <tr>
+                                <th scope="col" class="px-6 py-4">Name</th>
+                                <th scope="col" class="px-6 py-4">Email</th>
+                                <th scope="col" class="px-6 py-4">Edit</th>
+                                <th scope="col" class="px-6 py-4">Delete</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach($users as $user)
+                                @if($user->role == 0)
+                                    <tr class="border-b dark:border-neutral-500">
+                                        <td class="whitespace-nowrap px-6 py-4">{{ $user->name }}</td>
+                                        <td class="whitespace-nowrap px-6 py-4">{{ $user->email }}</td>
+                                        <td class="whitespace-nowrap px-6 py-4">
+                                            <a
+                                                href="/admin/users/{{ $user->id }}/edit"
+                                                class="text-blue-400 px-6 py-2 rounded-xl"
+                                            >
+                                                <i class="fa-solid fa-pen-to-square"></i>
+                                                Edit
+                                            </a>
+                                        </td>
+
+                                        <td class="whitespace-nowrap px-6 py-4">
+                                            @if(auth()->user()->id == $user->id)
+                                                <p>Logged In</p>
+                                            @else
+                                                <form method="POST" action="/admin/delete/{{ $user->id }}">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button class="text-red-500"><i class="fa-solid fa-trash"></i>Delete</button>
+                                                </form>
+                                            @endif
+                                        </td>
+
+
+                                    </tr>
+                                @endif
+                            @endforeach
+
+                            </tbody>
+                        </table>
+
+                        <h1 class="ml-2 text-xl font-bold text-laravel my-4">Employer Accounts</h1>
+
+                        <table class="min-w-full text-left text-sm font-light">
+                            <thead class="border-b font-medium dark:border-neutral-500">
+                            <tr>
+                                <th scope="col" class="px-6 py-4">Name</th>
+                                <th scope="col" class="px-6 py-4">Email</th>
+                                <th scope="col" class="px-6 py-4">Edit</th>
+                                <th scope="col" class="px-6 py-4">Delete</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach($users as $user)
+                                @if($user->role == 1)
+                                    <tr class="border-b dark:border-neutral-500">
+                                        <td class="whitespace-nowrap px-6 py-4">{{ $user->name }}</td>
+                                        <td class="whitespace-nowrap px-6 py-4">{{ $user->email }}</td>
+                                        <td class="whitespace-nowrap px-6 py-4">
+                                            <a
+                                                href="/admin/users/{{ $user->id }}/edit"
+                                                class="text-blue-400 px-6 py-2 rounded-xl"
+                                            >
+                                                <i class="fa-solid fa-pen-to-square"></i>
+                                                Edit
+                                            </a>
+                                        </td>
+
+                                        <td class="whitespace-nowrap px-6 py-4">
+                                            @if(auth()->user()->id == $user->id)
+                                                <p>Logged In</p>
+                                            @else
+                                                <form method="POST" action="/admin/delete/{{ $user->id }}">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button class="text-red-500"><i class="fa-solid fa-trash"></i>Delete</button>
+                                                </form>
+                                            @endif
+                                        </td>
+
+
+                                    </tr>
+                                @endif
+                            @endforeach
+
+                            </tbody>
+                        </table>
                     </div>
                 </div>
+            </div>
+        </div>
+
+        <div>
+            <div class="h-40 rounded-xl shadow-md p-6 mt-4 bg-white">
+                <div class="font-semibold mb-1 text-lg" style="color: rgb(0, 56, 55);">Total Users</div>
+                <div class="font-semibold text-5xl tracking-tight" style="color: rgb(0, 56, 55);">{{$totalUsers}}</div>
+            </div>
+            <div class="h-40 rounded-xl shadow-md p-6 mt-4 bg-white">
+                <div class="font-semibold mb-1 text-lg" style="color: rgb(0, 56, 55);">Total Admin Accounts</div>
+                <div class="font-semibold text-5xl tracking-tight" style="color: rgb(0, 56, 55);">{{$totalAdmin}}</div>
+            </div>
+            <div class="h-40 rounded-xl shadow-md p-6 mt-4 bg-white">
+                <div class="font-semibold mb-1 text-lg" style="color: rgb(0, 56, 55);">Total Business Accounts</div>
+                <div class="font-semibold text-5xl tracking-tight" style="color: rgb(0, 56, 55);">{{$totalBusiness}}</div>
+            </div>
+            <div class="h-40 rounded-xl shadow-md p-6 mt-4 bg-white">
+                <div class="font-semibold mb-1 text-lg" style="color: rgb(0, 56, 55);">Total Employer Accounts</div>
+                <div class="font-semibold text-5xl tracking-tight" style="color: rgb(0, 56, 55);">{{$totalEmployer}}</div>
+            </div>
+            <div class="h-40 rounded-xl shadow-md p-6 mt-4 bg-white">
+                <div class="font-semibold mb-1 text-lg" style="color: rgb(0, 56, 55);">Total Jobs</div>
+                <div class="font-semibold text-5xl tracking-tight" style="color: rgb(0, 56, 55);">{{$totalJobs}}</div>
+            </div>
+            <div class="h-40 rounded-xl shadow-md p-6 mt-4 bg-white">
+                <div class="font-semibold mb-1 text-lg" style="color: rgb(0, 56, 55);">Total Jobs Created This Month</div>
+                <div class="font-semibold text-5xl tracking-tight" style="color: rgb(0, 56, 55);">{{$totalJobsThisMonth}}</div>
+            </div>
+            <div class="h-40 rounded-xl shadow-md p-6 mt-4 bg-white">
+                <div class="font-semibold mb-1 text-lg" style="color: rgb(0, 56, 55);">Total Jobs Created This Year</div>
+                <div class="font-semibold text-5xl tracking-tight" style="color: rgb(0, 56, 55);">{{$totalJobsThisYear}}</div>
+            </div>
+            <div class="h-40 rounded-xl shadow-md p-6 mt-4 bg-white">
+                <div class="font-semibold mb-1 text-lg" style="color: rgb(0, 56, 55);">Total Bookmarks</div>
+                <div class="font-semibold text-5xl tracking-tight" style="color: rgb(0, 56, 55);">{{$totalBookmarks}}</div>
+            </div>
+            <div class="h-40 rounded-xl shadow-md p-6 mt-4 bg-white">
+                <div class="font-semibold mb-1 text-lg" style="color: rgb(0, 56, 55);">Most Bookmarked Job</div>
+                <div class="font-semibold text-5xl tracking-tight" style="color: rgb(0, 56, 55);">{{$mostBookmarkedJob->company}}</div>
+                <div class="font-normal" style="color: rgb(0, 119, 117);">{{$mostBookmarkedJob->title}}</div>
+
             </div>
         </div>
 

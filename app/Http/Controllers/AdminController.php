@@ -2,18 +2,46 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bookmark;
+use App\Models\Listing;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Validation\Rule;
 
 class AdminController extends Controller
 {
     public function index()
     {
-//        dd(User::all());
+
+        $totalUsers = User::count();
+        $totalJobs = Listing::count();
+        $totalBookmarks = Bookmark::count();
+
+        $totalBusiness = User::where('role', '0')->count();
+        $totalEmployer = User::where('role', '1')->count();
+        $totalAdmin = User::where('role', '2')->count();
+
+        $todayDate = Carbon::now()->format('d-m-Y');
+        $thisMonth = Carbon::now()->format('m');
+        $thisYear = Carbon::now()->format('Y');
+
+        $totalJobsToday = Listing::whereDate('created_at', $todayDate)->count();
+        $totalJobsThisMonth = Listing::whereMonth('created_at', $thisMonth)->count();
+        $totalJobsThisYear = Listing::whereYear('created_at', $thisYear)->count();
+
+
+        $mostBookmarked = Bookmark::select('listing_id')
+            ->groupBy('listing_id')
+            ->orderByRaw('COUNT(*) DESC')
+            ->limit(1)
+            ->get();
+        $mostBookmarkedJob = Listing::find($mostBookmarked[0]['listing_id']);
+
         return view('admin.dashboard', [
-            'users' => User::all()
-        ]);
+            'users' => User::all(),
+        ], compact('totalUsers', 'totalJobs', 'totalBookmarks', 'totalBusiness', 'totalEmployer',
+            'totalAdmin', 'totalJobsToday', 'totalJobsThisMonth', 'totalJobsThisYear', 'mostBookmarked', 'mostBookmarkedJob'));
 
     }
 
