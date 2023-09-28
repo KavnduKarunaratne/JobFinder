@@ -37,11 +37,6 @@ Route::prefix('employer')->middleware(['auth', 'employer'])->group(function() {
     Route::get('/', [EmployeeController::class, 'index']);
 });
 
-// Business Owner Section
-Route::prefix('business')->middleware(['auth', 'business'])->group(function() {
-    Route::get('/', [BusinessController::class, 'index']);
-});
-
 // All Listing
 
 Route::get('/', [ListingController::class, 'index']);

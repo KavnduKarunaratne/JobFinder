@@ -108,7 +108,8 @@ class ListingController extends Controller
 
     //Manage Listings
     public function manage() {
-        return view('listings.manage', ['listings' => auth()->user()->listings()->get()]);
+        $jobCount = Listing::where('user_id', auth()->id())->count();
+        return view('listings.manage', ['listings' => auth()->user()->listings()->get()], compact('jobCount'));
     }
 
     public function bookmark(Request $request) {

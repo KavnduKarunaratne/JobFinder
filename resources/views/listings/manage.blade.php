@@ -6,6 +6,12 @@
             >
                 Manage Jobs
             </h1>
+            <h1
+                class="text-3xl text-center font-bold my-6 uppercase"
+            >
+                Current No. of Jobs: {{$jobCount}}
+            </h1>
+
         </header>
 
         <table class="w-full table-auto rounded-sm">

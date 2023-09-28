@@ -46,11 +46,6 @@
                             <i class="fa-solid fa-gear"></i>
                             Manage Jobs</a>
                     </li>
-                    <li>
-                        <a href="/business" class="hover:text-laravel">
-                            <i class="fa-solid fa-user"></i>
-                            Profile</a>
-                    </li>
             @endif
             @if(auth()->user()->role == 1)
                     <li>
