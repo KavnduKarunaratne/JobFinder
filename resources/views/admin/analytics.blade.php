@@ -168,6 +168,10 @@
         </div>
 
         <div class="w-3/4 mt-4">
+            <canvas id="threeChart"></canvas>
+        </div>
+
+        <div class="w-3/4 mt-4">
             <canvas id="twoChart"></canvas>
         </div>
 
@@ -183,6 +187,7 @@
 <script>
     const ctx1 = document.getElementById('oneChart');
     const ctx2 = document.getElementById('twoChart');
+    const ctx3 = document.getElementById('threeChart');
 
     const totalAdminData = @json($totalAdmin);
     const totalEmployerData = @json($totalEmployer);
@@ -202,6 +207,14 @@
     const totalJobsThisOct = @json($totalJobOct);
     const totalJobsThisNov = @json($totalJobNov);
     const totalJobsThisDec = @json($totalJobDec);
+
+    const nameOneBookmark = @json($oneBookmarkedJob->title);
+    const nameTwoBookmark = @json($twoBookmarkedJob->title);
+    const nameThreeBookmark = @json($threeBookmarkedJob->title);
+
+    const countOneBookmark = @json($oneBookmarkedCount);
+    const countTwoBookmark = @json($twoBookmarkedCount);
+    const countThreeBookmark = @json($threeBookmarkedCount);
 
     new Chart(ctx1, {
         type: 'bar',
@@ -260,7 +273,36 @@
                 }
             }
         }
-    });
+});
+
+        new Chart(ctx3, {
+            type: 'bar',
+            data: {
+                labels: [nameOneBookmark, nameTwoBookmark, nameThreeBookmark],
+                datasets: [{
+                    label: 'Number of Bookmarks for the top 3 jobs',
+                    data: [countOneBookmark, countTwoBookmark, countThreeBookmark],
+                    backgroundColor: [
+                        'rgba(0, 128, 128, 0.2)',
+                        'rgba(0, 128, 128, 0.2)',
+                        'rgba(0, 128, 128, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(0, 128, 128, 1)',
+                        'rgba(0, 128, 128, 1)',
+                        'rgba(0, 128, 128, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
 </script>
 </body>
 </html>

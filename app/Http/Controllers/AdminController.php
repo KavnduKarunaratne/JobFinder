@@ -67,16 +67,22 @@ class AdminController extends Controller
             ->orderByRaw('COUNT(*) DESC')
             ->limit(3)
             ->get();
+
         $oneBookmarkedJob = Listing::find($mostBookmarked[0]['listing_id']);
         $twoBookmarkedJob = Listing::find($mostBookmarked[1]['listing_id']);
         $threeBookmarkedJob = Listing::find($mostBookmarked[2]['listing_id']);
+
+        $oneBookmarkedCount = Bookmark::where('listing_id', $mostBookmarked[0]['listing_id'])->count();
+        $twoBookmarkedCount = Bookmark::where('listing_id', $mostBookmarked[1]['listing_id'])->count();
+        $threeBookmarkedCount = Bookmark::where('listing_id', $mostBookmarked[2]['listing_id'])->count();
 
 
         return view('admin.analytics', compact('totalUsers', 'totalJobs', 'totalBookmarks', 'totalBusiness', 'totalEmployer',
             'totalAdmin', 'totalJobsToday', 'totalJobsThisMonth', 'totalJobsThisYear', 'mostBookmarked',
             'oneBookmarkedJob', 'twoBookmarkedJob', 'threeBookmarkedJob',
             'totalJobJan', 'totalJobFeb', 'totalJobMar', 'totalJobApr', 'totalJobMay', 'totalJobJun',
-            'totalJobJul', 'totalJobAug', 'totalJobSep', 'totalJobOct', 'totalJobNov', 'totalJobDec'));
+            'totalJobJul', 'totalJobAug', 'totalJobSep', 'totalJobOct', 'totalJobNov', 'totalJobDec',
+            'oneBookmarkedCount', 'twoBookmarkedCount', 'threeBookmarkedCount'));
     }
 
     // Show create form
