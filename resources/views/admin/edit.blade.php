@@ -4,9 +4,9 @@
     >
         <header class="text-center">
             <h2 class="text-2xl font-bold uppercase mb-1">
-                Register
+                Edit
             </h2>
-            <p class="mb-4">Create an admin account</p>
+            <p class="mb-4">Edit an admin account</p>
         </header>
 
         <form method="POST" action="/admin/users/{{$user->id}}">

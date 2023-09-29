@@ -113,7 +113,6 @@ class AdminController extends Controller
 
     //Show Edit form
     public function edit(User $user) {
-//        dd($user);
         return view('admin.edit', [
             'user' => $user
         ]);
