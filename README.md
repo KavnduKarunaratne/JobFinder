@@ -85,12 +85,8 @@ Before you get started with the project, make sure you have the following requir
    ```bash
    php artisan migrate
    ```
-7. Seed the database:
-
-   ```bash
-    php artisan db:seed
-    ```
-8. Start the server:
+   
+7. Start the server:
 
    ```bash
    php artisan serve
