@@ -29,7 +29,7 @@ This README provides an overview of the project, how to get started, and how to 
 
 ## Project Documentation <a name="project-documentation"></a>
 
-The project document can be accessed [here](Document/SSP2 Report.pdf).
+The project document can be accessed [here](Document/SSP2-Report.pdf).
 
 ## Features <a name="features"></a>
 
