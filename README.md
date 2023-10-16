@@ -1,66 +1,111 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# JobFinder
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+<img src="Document/README.png">
 
-## About Laravel
+## Table of Contents
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- [Introduction](#introduction)
+- [Project Documentation](#project-documentation)
+- [Features](#features)
+- [Prerequisites](#prerequisites)
+- [Getting Started](#getting-started)
+- [Technologies Used](#technology-used)
+- [License](#license)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Introduction <a name="introduction"></a>
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+For this assignment a Customer Relationship Management (CRM) system was developed for a job
+finding agency called JobFinder. A web solution was proposed with the implementation of a CRM
+to the agency to further improve their job finding.
 
-## Learning Laravel
+This website solution contains 3 user roles. The
+business role is for companies, and it allows them to post jobs for their companies. The employer
+role is for job applicants who can view the jobs posted by businesses and apply to them if they
+want to. The administrator role is for the job agency where they can view the analytical data
+provided by the information available.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+This README provides an overview of the project, how to get started, and how to contribute.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Project Documentation <a name="project-documentation"></a>
 
-## Laravel Sponsors
+The project document can be accessed [here](Document/SSP2 Report.pdf).
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+## Features <a name="features"></a>
 
-### Premium Partners
+- Efficient and effective job finding through names and keywords.
+- Businesses can post job openings with detailed information.
+- Job seekers can search and apply for jobs posted by businesses.
+- User authentication and authorization for all user roles.
+- User-friendly interface for easy navigation.
+- Admin dashboard for the job agency to view analytical data.
+- User management for the job agency to manage users.
+- Job management for the job agency and businesses to manage jobs.
+- Integrated CRM system for the job agency to manage their customers.
+- Integrated email system for the job seekers to email their CVs to businesses.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+## Prerequisites <a name="prerequisites"></a>
 
-## Contributing
+Before you get started with the project, make sure you have the following requirements installed:
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+- Node.js: [Download Node.js](https://nodejs.org/)
+- PHP 8 or higher: [Download PHP](https://www.php.net/downloads)
+- Composer: [Download Composer](https://getcomposer.org/download/)
+- WAMP Server: [Download WAMP Server](https://www.wampserver.com/en/)
 
-## Code of Conduct
+## Getting Started <a name="getting-started"></a>
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+1. Clone the repository:
 
-## Security Vulnerabilities
+   ```bash
+   git clone https://github.com/YourUsername/JobFinder.git
+   ```
+2. Change into the project directory:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+   ```bash
+   cd JobFinder
+   ```
+3. Install the dependencies:
 
-## License
+   ```bash
+   composer install
+   ```
+4. Create a copy of the `.env.example` file and rename it to `.env`:
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+   ```bash
+   cp .env.example .env
+   ```
+5. Generate an application key:
+
+   ```bash
+    php artisan key:generate
+    ```
+6. Migrate the database:
+
+   ```bash
+   php artisan migrate
+   ```
+7. Seed the database:
+
+   ```bash
+    php artisan db:seed
+    ```
+8. Start the server:
+
+   ```bash
+   php artisan serve
+   ```
+   
+## Technologies Used <a name="technology-used"></a>
+
+- Frameworks: Laravel, Alpine.js (JavaScript), Tailwind CSS (CSS)
+- Libraries: Font Awesome, Chart.js
+- Languages: PHP, JavaScript
+- Database: MySQL
+- Mail Server: Mailtrap
+
+## License <a name="license"></a>
+
+The Laravel framework is and open-sourced software licensed under the MIT License - see the [LICENSE](https://opensource.org/licenses/MIT) file for details.
+
+
